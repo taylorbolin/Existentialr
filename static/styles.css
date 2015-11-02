@@ -1,0 +1,33 @@
+h1 {
+	color: red;
+	font-family: creepster;
+	font-size: 80px;
+	margin-top: 50px;
+	text-align:center;
+}
+h6, h4 {
+	color: red;
+	text-align: center;
+	/*font-family: creepster;*/
+}
+body{
+	text-align: center;
+  background:url(http://i.imgur.com/n61FCdO.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+#background {
+    opacity:0.75;
+    background-color:#000;
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+}
+.container, .row {
+	width: 200px;
+	margin: 0 auto;
+	display; block;
+	text-align: center;
+}

@@ -4,11 +4,13 @@ h1 {
 	font-size: 80px;
 	margin-top: 50px;
 	text-align:center;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 h6, h4 {
 	color: red;
 	text-align: center;
 	/*font-family: creepster;*/
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 body{
 	text-align: center;
@@ -17,8 +19,8 @@ body{
 }
 
 #background {
-    opacity:0.75;
-    background-color:#000;
+    /*opacity:0.75;
+    background-color:#000;*/
     position:fixed;
     width:100%;
     height:100%;

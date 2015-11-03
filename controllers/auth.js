@@ -3,23 +3,71 @@ var express = require('express');
 var request = require('request');
 var router = express.Router();
 var bcrypt = require('bcrypt');
+var flash = require('flash');
+var session = require('express-session');
 
-// router.get('/', function(req, res) {
-// 	res.render('index');
-// });
+router.route("/login")
+	.get(function(req, res) {
+		res.render("auth/login");
+	})
+	.post(function(req, res) {
+		db.user.authenticate(
+			req.body.email, 
+			req.body.password, 
+			function(err, user) {
+				if (err) {
+					res.send(err);
+				} else if (user) {
+					req.session.user = user.id;
+					req.flash("danger", "You're logged in!");
+					res.redirect("/main");
+				} else {
+					req.flash("danger", "Wrong username or password");
+					res.redirect("/auth/login");
+				}
+			}
+		);
+	});
 
-// create login form
-router.get('/login',function(req,res){
-  res.render('auth/login');
+router.route("/signup")
+	.get(function(req, res) {
+		res.render("auth/signup");
+	})
+	.post(function(req, res) {
+		if (req.body.password !== req.body.password2) {
+			req.flash("danger", "Passwords entered do not match. Try again!");
+			res.redirect("/auth/signup");
+		} else {
+			db.user.findOrCreate({
+				where: {
+					email: req.body.email
+				},
+				defaults: {
+					email: req.body.email,
+					name: req.body.name,
+					password: req.body.password
+				}
+			}).spread(function(user, created) {
+				if (created) {
+					req.flash("danger", "You've created an account!");
+					res.redirect("/main");
+				} else {
+					req.flash("danger", "a user with that ID already exists");
+					res.redirect("/auth/signup");
+				}
+			}).catch(function(err) {
+				req.flash("danger", "An error occured!");
+				res.redirect("/auth/signup");
+			});
+		}
+	});
+router.get("/logout", function(req, res) {
+	req.flash("info", "You are logged out");
+	req.session.user = false;
+	res.redirect("/");
+
 });
 
-// create signup form
-router.get('/signup',function(req,res) {
-  res.render('auth/signup');
-});
 
-router.post('/login', function(req, res){
-	
-})
 
 module.exports = router;

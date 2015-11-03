@@ -32,3 +32,13 @@ body{
 	display; block;
 	text-align: center;
 }
+.login-page {
+	width: 200px;
+	margin: 0 auto;
+	display: block;
+}
+.signup-page {
+	width: 300px;
+	margin: 0 auto;
+	display: block;
+}

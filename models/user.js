@@ -1,4 +1,4 @@
-// var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt');
 
 'use strict';
 module.exports = function(sequelize, DataTypes) {

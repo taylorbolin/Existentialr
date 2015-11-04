@@ -43,3 +43,12 @@ body{
 .img-responsive {
 	margin: 0 auto;
 }
+.logout {
+	color: #af111c;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.comment {
+	width: 300px;
+}

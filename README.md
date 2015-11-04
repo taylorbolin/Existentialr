@@ -6,3 +6,4 @@
 -change headers on login/signup/comments page to be smaller/cooler
 -add functioning log out button
 -make other pages restricted
+-tighten up flash messages

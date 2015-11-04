@@ -12,6 +12,15 @@ router.get('/', function(req, res) {
 
 });
 
+router.get("/", function(req, res) {
+	if (req.currentUser) {
+		res.render("main/index");
+	} else {
+		req.flash("danger", "ACCESS DENIED!");
+		res.redirect("/");
+	}
+});
+
 router.post('/', function(req, res) {
 	birthdate = req.body.birth;
 	// console.log("B",birthdate)
@@ -34,7 +43,7 @@ router.post('/', function(req, res) {
 				var yearsLeft = "Time remaining: "+Math.round(result.body.data.date.years)+" years, "
 								+Math.round(result.body.data.date.months)+" months, "
 								+Math.round(result.body.data.date.days)+" days, "
-								+Math.round(result.body.data.date.hours)+" hours, and "
+								+Math.round(result.body.data.date.hours)+" hours and "
 								+Math.round(result.body.data.date.minutes)+" minutes"
 				var lifeComplete = "Life completed to date: "+Math.round(result.body.data.lifeComplete*100)+"%"
 				res.render('main/index', {yearsLeft: yearsLeft, lifeComplete: lifeComplete});

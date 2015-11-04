@@ -26,7 +26,12 @@ router.route("/signup")
 				}
 			}).spread(function(user, created) {
 				if (created) {
-					req.flash("danger", "You've created an account!");
+					swal({   
+	        	title: "Congratulations",
+	        	text: "You're now a member of Existentialr",
+	        	timer: 2000,   
+	        	showConfirmButton: false
+	        });
 					res.redirect("/main");
 				} else {
 					req.flash("danger", "a user with that ID already exists");
@@ -53,7 +58,6 @@ router.route('/login')
       }
       else if (user) {
         req.session.user = user.id;
-        req.flash('success', 'You are logged in');
         res.redirect('/main');
       }
       else {
@@ -64,7 +68,7 @@ router.route('/login')
   });
 
 router.get("/logout", function(req, res) {
-	req.flash("info", "You are logged out");
+	req.flash("danger", "You are logged out");
 	req.session.user = false;
 	res.redirect("/");
 

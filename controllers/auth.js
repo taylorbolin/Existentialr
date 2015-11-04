@@ -6,29 +6,6 @@ var bcrypt = require('bcrypt');
 var flash = require('flash');
 var session = require('express-session');
 
-router.route("/login")
-	.get(function(req, res) {
-		res.render("auth/login");
-	})
-	.post(function(req, res) {
-		db.user.authenticate(
-			req.body.email, 
-			req.body.password, 
-			function(err, user) {
-				if (err) {
-					res.send(err);
-				} else if (user) {
-					req.session.user = user.id;
-					req.flash("danger", "You're logged in!");
-					res.redirect("/main");
-				} else {
-					req.flash("danger", "Wrong username or password");
-					res.redirect("/auth/login");
-				}
-			}
-		);
-	});
-
 router.route("/signup")
 	.get(function(req, res) {
 		res.render("auth/signup");
@@ -61,6 +38,31 @@ router.route("/signup")
 			});
 		}
 	});
+
+router.route('/login')
+  .get(function(req, res) {
+    res.render('auth/login');
+  })
+  .post(function(req, res) {
+    db.user.authenticate(
+    	req.body.email, 
+    	req.body.password, 
+    	function(err, user) {
+      if (err) {
+        res.send(err);
+      }
+      else if (user) {
+        req.session.user = user.id;
+        req.flash('success', 'You are logged in');
+        res.redirect('/main');
+      }
+      else {
+        req.flash('danger', 'Invalid username or password');
+        res.redirect('/auth/login');
+      }
+    });
+  });
+
 router.get("/logout", function(req, res) {
 	req.flash("info", "You are logged out");
 	req.session.user = false;

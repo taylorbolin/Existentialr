@@ -1,0 +1,8 @@
+-time out flash messages
+-find way to fully refresh main page after search is run
+-sort out error message when wrong params are entered
+-maybe swap out flash alerts for sweet alerts or some other alert system. sweet alert time out is much easier
+-hide api key on controllers/main
+-change headers on login/signup/comments page to be smaller/cooler
+-add functioning log out button
+-make other pages restricted

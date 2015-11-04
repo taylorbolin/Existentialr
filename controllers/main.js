@@ -22,16 +22,19 @@ router.post('/', function(req, res) {
 		.header("X-Mashape-Key", "API KEY HERE")
 		.header("Accept", "application/json")
 		.end(function (result, err) {
-			console.log(result.code);
+			// console.log(result.status);
+			// console.log(result.headers);
+			console.log(result.body.success);
 			// console.log(result)
 			// if (result.body.success){
 			// console.log(result.body.data.yearsLeft);
 		  // console.log("Time remaining: "+Math.round(result.body.data.yearsLeft)+" years");
 		  // console.log("Life completed: "+Math.round(result.body.data.lifeComplete*100)+"%");
-			if (!err && result.code === 200) {
+			if (result.body.success === true) {
 				var yearsLeft = "Time remaining: "+Math.round(result.body.data.date.years)+" years, "
 								+Math.round(result.body.data.date.months)+" months, "
-								+Math.round(result.body.data.date.days)+" days, and "
+								+Math.round(result.body.data.date.days)+" days, "
+								+Math.round(result.body.data.date.hours)+" hours, and "
 								+Math.round(result.body.data.date.minutes)+" minutes"
 				var lifeComplete = "Life completed to date: "+Math.round(result.body.data.lifeComplete*100)+"%"
 				res.render('main/index', {yearsLeft: yearsLeft, lifeComplete: lifeComplete});
@@ -53,6 +56,4 @@ router.post('/', function(req, res) {
 //     }
 //   });
 // });
-
-
 

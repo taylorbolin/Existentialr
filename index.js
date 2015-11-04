@@ -4,6 +4,7 @@ var request = require('request');
 var bodyParser = require('body-parser');
 var app = express();
 var bcrypt = require('bcrypt');
+var db = require('./models');
 // var lifeAPI = require('./apis/life_api');
 
 app.set('view engine', 'ejs');
@@ -37,12 +38,6 @@ app.use(function(req, res, next) {
 
 var flash = require("connect-flash");
 app.use(flash());
-
-// app.configure(function() {
-//   app.use(express.cookieParser('keyboard cat'));
-//   app.use(express.session({ cookie: { maxAge: 3000 }}));
-//   app.use(flash());
-// });
 
 app.use(function(req, res, next) {
 	res.locals.currentUser = req.currentUser;

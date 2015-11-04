@@ -9,13 +9,11 @@ h1 {
 h6, h4 {
 	color: #af111c;
 	text-align: center;
-	/*font-family: creepster;*/
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 body{
 	text-align: center;
   background:url(http://i.imgur.com/sfbccYM.jpg) no-repeat center center fixed;
-  /*background:url(http://wallpapers1.hellowallpaper.com/art_minimalist-design-widescreen--03_10-2560x1600.jpg) no-repeat center center fixed;*/
   background-size: cover;
 }
 
@@ -41,4 +39,7 @@ body{
 	width: 300px;
 	margin: 0 auto;
 	display: block;
+}
+.img-responsive {
+	margin: 0 auto;
 }

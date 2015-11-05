@@ -56,7 +56,4 @@ app.use('/auth', require('./controllers/auth.js'));
 app.use('/comments', require('./controllers/comment.js'));
 app.use('/main', require('./controllers/main.js'));
 
-var port = 3000;
-app.listen(port, function() {
-  console.log("You're listening to the smooth sounds of port " + port);
-});
+app.listen(process.env.PORT || 3000);

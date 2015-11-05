@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
 
 router.get("/", function(req, res) {
 	if (req.currentUser) {
-		res.render("main/index");
+		res.render("main/restricted");
 	} else {
 		req.flash("danger", "ACCESS DENIED!");
 		res.redirect("/");
@@ -28,7 +28,7 @@ router.post('/', function(req, res) {
 	// console.log("G",gendertype)
 	// console.log(birthdate);
 	unirest.get("https://life-left.p.mashape.com/time-left?birth=" + birthdate + "&gender=" + gendertype)
-		.header("X-Mashape-Key", "API KEY HERE")
+		.header("X-Mashape-Key", "XAEiRyqb4QmshFor5IzbZteM2HsAp1TRGoRjsnw1uEXJziRIEa")
 		.header("Accept", "application/json")
 		.end(function (result, err) {
 			// console.log(result.status);

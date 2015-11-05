@@ -23,7 +23,7 @@ router.post('/', function(req, res) {
 	birthdate = req.body.birth;
 	gendertype = req.body.gender;
 	unirest.get("https://life-left.p.mashape.com/time-left?birth="+birthdate+"&gender="+gendertype)
-		.header("X-Mashape-Key", "XAEiRyqb4QmshFor5IzbZteM2HsAp1TRGoRjsnw1uEXJziRIEa")
+		.header("X-Mashape-Key", "API KEY HERE")
 		.header("Accept", "application/json")
 		.end(function (result, err) {
 			

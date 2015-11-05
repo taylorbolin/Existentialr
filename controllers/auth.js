@@ -34,7 +34,7 @@ router.route("/signup")
 	    //     });
 					res.redirect("/main");
 				} else {
-					req.flash("danger", "a user with that ID already exists");
+					req.flash("danger", "A user with those credentials already exists!");
 					res.redirect("/auth/signup");
 				}
 			}).catch(function(err) {

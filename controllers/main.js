@@ -5,40 +5,28 @@ var unirest = require('unirest');
 var birthdate;
 var gendertype;
 
+var lifekey = process.env.LIFE_KEY;
+
 module.exports = router;
 
 router.get('/', function(req, res) {
-	res.render('main/index', {yearsLeft: null, lifeComplete: null});
-
-});
-
-router.get("/", function(req, res) {
 	if (req.currentUser) {
-		res.render("main/restricted");
+		res.render('main/index', {yearsLeft: null, lifeComplete: null});
 	} else {
 		req.flash("danger", "ACCESS DENIED!");
-		res.redirect("/");
+		res.redirect('auth/signup');
 	}
 });
 
+
 router.post('/', function(req, res) {
 	birthdate = req.body.birth;
-	// console.log("B",birthdate)
 	gendertype = req.body.gender;
-	// console.log("G",gendertype)
-	// console.log(birthdate);
-	unirest.get("https://life-left.p.mashape.com/time-left?birth=" + birthdate + "&gender=" + gendertype)
-		.header("X-Mashape-Key", "API KEY HERE")
+	unirest.get("https://life-left.p.mashape.com/time-left?birth="+birthdate+"&gender="+gendertype)
+		.header("X-Mashape-Key", "XAEiRyqb4QmshFor5IzbZteM2HsAp1TRGoRjsnw1uEXJziRIEa")
 		.header("Accept", "application/json")
 		.end(function (result, err) {
-			// console.log(result.status);
-			// console.log(result.headers);
-			console.log(result.body.success);
-			// console.log(result)
-			// if (result.body.success){
-			// console.log(result.body.data.yearsLeft);
-		  // console.log("Time remaining: "+Math.round(result.body.data.yearsLeft)+" years");
-		  // console.log("Life completed: "+Math.round(result.body.data.lifeComplete*100)+"%");
+			
 			if (result.body.success === true) {
 				var yearsLeft = "Time remaining: "+Math.round(result.body.data.date.years)+" years, "
 								+Math.round(result.body.data.date.months)+" months, "
@@ -55,14 +43,4 @@ router.post('/', function(req, res) {
 			
 	});
 
-
-
-//  if (!err && response.statusCode === 200 && data.Search) {
-//       res.render('movies/index', {movies: data.Search,
-//                             q: query});
-//     } else {
-//       res.render('error');
-//     }
-//   });
-// });
 

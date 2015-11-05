@@ -26,12 +26,13 @@ router.route("/signup")
 				}
 			}).spread(function(user, created) {
 				if (created) {
-					swal({   
-	        	title: "Congratulations",
-	        	text: "You're now a member of Existentialr",
-	        	timer: 2000,   
-	        	showConfirmButton: false
-	        });
+					alert("congratulations!")
+					// swal({   
+	    //     	title: "Congratulations",
+	    //     	text: "You're now a member of Existentialr",
+	    //     	timer: 2000,   
+	    //     	showConfirmButton: false
+	    //     });
 					res.redirect("/main");
 				} else {
 					req.flash("danger", "a user with that ID already exists");

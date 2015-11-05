@@ -5,7 +5,6 @@ var bodyParser = require('body-parser');
 var app = express();
 var bcrypt = require('bcrypt');
 var db = require('./models');
-// var lifeAPI = require('./apis/life_api');
 
 app.set('view engine', 'ejs');
 app.use(ejsLayouts);
@@ -24,14 +23,17 @@ app.use(function(req, res, next) {
 		db.user.findById(req.session.user).then(function(user) {
 			if (user) {
 				req.currentUser = user;
+				console.log(req.currentUser);
 				next();
 			} else {
 				req.currentUser = false;
+				console.log(req.currentUser);
 				next();
 			}
 		})
 	} else {
 		req.currentUser = false;
+		console.log(req.currentUser);
 		next();
 	}
 });
@@ -52,9 +54,6 @@ app.get('/', function(req, res) {
 app.use('/auth', require('./controllers/auth.js'));
 app.use('/comments', require('./controllers/comment.js'));
 app.use('/main', require('./controllers/main.js'));
-
-
-
 
 var port = 3000;
 app.listen(port, function() {

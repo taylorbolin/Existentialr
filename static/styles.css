@@ -53,6 +53,7 @@ body{
 }
 .comments {
 	width: 400px;
-	opacity: 0.8;
+	opacity: 0.6;
 	margin: 0 auto;
+	padding: 2px;
 }

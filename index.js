@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var bcrypt = require('bcrypt');
 var db = require('./models');
+var lifekey = process.env.LIFE_KEY;
 
 app.set('view engine', 'ejs');
 app.use(ejsLayouts);

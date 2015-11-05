@@ -3,7 +3,6 @@ var request = require('request');
 var router = express.Router();
 var db = require('../models');
 
-
 router.route('/')
 	.get(function(req, res) {
 		db.comment.findAll({
@@ -18,8 +17,6 @@ router.route('/')
 			res.redirect('/comments')
 		
 	});
-
 });
-
 
 module.exports = router;

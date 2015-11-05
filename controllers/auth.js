@@ -26,7 +26,6 @@ router.route("/signup")
 				}
 			}).spread(function(user, created) {
 				if (created) {
-					alert("congratulations!")
 					// swal({   
 	    //     	title: "Congratulations",
 	    //     	text: "You're now a member of Existentialr",

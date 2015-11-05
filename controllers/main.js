@@ -5,25 +5,28 @@ var unirest = require('unirest');
 var birthdate;
 var gendertype;
 
-var lifekey = process.env.LIFE_KEY;
-
 module.exports = router;
 
 router.get('/', function(req, res) {
-	if (req.currentUser) {
-		res.render('main/index', {yearsLeft: null, lifeComplete: null});
-	} else {
-		req.flash("danger", "ACCESS DENIED!");
-		res.redirect('auth/signup');
-	}
+	res.render('main/index', {yearsLeft: null, lifeComplete: null});
 });
+
+// router.get('/', function(req, res) {
+// 	if (req.currentUser) {
+// 		res.render('main/index', {yearsLeft: null, lifeComplete: null});
+// 	} else {
+// 		req.flash("danger", "ACCESS DENIED!");
+// 		res.redirect('auth/signup');
+// 	}
+// });
 
 
 router.post('/', function(req, res) {
 	birthdate = req.body.birth;
 	gendertype = req.body.gender;
 	unirest.get("https://life-left.p.mashape.com/time-left?birth="+birthdate+"&gender="+gendertype)
-		.header("X-Mashape-Key", "API KEY HERE")
+		.header("X-Mashape-Key", process.env.LIFE_KEY)
+		//.header("X-Mashape-Key", "XAEiRyqb4QmshFor5IzbZteM2HsAp1TRGoRjsnw1uEXJziRIEa")
 		.header("Accept", "application/json")
 		.end(function (result, err) {
 			

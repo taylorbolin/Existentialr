@@ -19,4 +19,16 @@ router.route('/')
 	});
 });
 
+// router.delete('/comments', function(req, res) {
+//   db.comment.destroy({
+//     where: {
+//       id: req.params.id
+//     }
+//   }).then(function() {
+//     res.send({'msg': 'success'});
+//   }).catch(function(e) {
+//     res.send({'msg': 'error', 'error': e});
+//   });
+// });
+
 module.exports = router;

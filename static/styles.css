@@ -46,7 +46,7 @@ body{
 	color: #af111c;
 	position: absolute;
 	top: 0;
-	right: 0;
+	right: 8px;
 }
 .comment {
 	width: 300px;
@@ -56,4 +56,10 @@ body{
 	opacity: 0.6;
 	margin: 0 auto;
 	padding: 2px;
+}
+.cornerbtnleft {
+	color: #af111c;
+	position: absolute;
+	top: 0;
+	left: 8px;
 }

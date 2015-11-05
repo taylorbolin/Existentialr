@@ -1,5 +1,6 @@
 <h1>Share your thoughts</h1>
 <a href="auth/logout" class="btn btn-inverse cornerbtn">Log Out</a>
+<a href="/main" class="btn btn-inverse cornerbtnleft">Back</a>
 
 <form action="" method="POST" role="form">
 	<div class="form-group comment">
@@ -12,6 +13,8 @@
 <% comments.forEach(function(comment) { %>
   <div class="well comments">
   	<h5><%= comment.content %></h5>
+  <!-- 	<a href="/comments" class="btn btn-danger">Remove</a>
+  </div> -->
   </div><br>
 <% }); %>
 

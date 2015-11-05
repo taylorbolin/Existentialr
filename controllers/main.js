@@ -8,18 +8,13 @@ var gendertype;
 module.exports = router;
 
 router.get('/', function(req, res) {
-	res.render('main/index', {yearsLeft: null, lifeComplete: null});
+	if (req.currentUser) {
+		res.render('main/index', {yearsLeft: null, lifeComplete: null});
+	} else {
+		req.flash("danger", "Access denied. Please create an account to continue.");
+		res.redirect('auth/signup');
+	}
 });
-
-// router.get('/', function(req, res) {
-// 	if (req.currentUser) {
-// 		res.render('main/index', {yearsLeft: null, lifeComplete: null});
-// 	} else {
-// 		req.flash("danger", "ACCESS DENIED!");
-// 		res.redirect('auth/signup');
-// 	}
-// });
-
 
 router.post('/', function(req, res) {
 	birthdate = req.body.birth;
@@ -28,7 +23,6 @@ router.post('/', function(req, res) {
 		.header("X-Mashape-Key", process.env.LIFE_KEY)
 		.header("Accept", "application/json")
 		.end(function (result, err) {
-			
 			if (result.body.success === true) {
 				var yearsLeft = "Time remaining: "+Math.round(result.body.data.date.years)+" years, "
 								+Math.round(result.body.data.date.months)+" months, "

@@ -19,9 +19,12 @@ router.route('/')
 	});
 });
 
+
 // router.delete('/comments', function(req, res) {
+// 	consle
 //   db.comment.destroy({
 //     where: {
+
 //       id: req.params.id
 //     }
 //   }).then(function() {

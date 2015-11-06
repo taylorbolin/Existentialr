@@ -24,17 +24,14 @@ app.use(function(req, res, next) {
 		db.user.findById(req.session.user).then(function(user) {
 			if (user) {
 				req.currentUser = user;
-				console.log(req.currentUser);
 				next();
 			} else {
 				req.currentUser = false;
-				console.log(req.currentUser);
 				next();
 			}
 		})
 	} else {
 		req.currentUser = false;
-		console.log(req.currentUser);
 		next();
 	}
 });

@@ -36,8 +36,6 @@ router.route("/signup")
 			}).catch(function(err) {
 				req.flash("danger", "An error occured!");
 				res.redirect("/auth/signup");
-				console.log(req.currentUser);
-				console.log(req.session.user);
 			});
 		}
 	});
